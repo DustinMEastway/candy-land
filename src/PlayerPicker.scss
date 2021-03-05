@@ -1,0 +1,50 @@
+@import './variables';
+
+$pad-width: 1em;
+
+.PlayerPicker {
+	background-color: $control-background;
+	padding: $pad-width $pad-width 0 $pad-width;
+}
+
+.PlayerPicker-actions {
+	display: flex;
+	justify-content: flex-end;
+	padding: ($pad-width/2) 0;
+}
+
+.PlayerPicker-content {
+	margin-top: $pad-width / 2;
+}
+
+.PlayerPicker-player-row {
+	input {
+		background-color: $input-background;
+		color: $input-color;
+		margin-left: $pad-width / 2;
+		padding: 0.25em;
+	}
+
+	select {
+		background-color: $input-background;
+		color: $input-color;
+		padding: 0.25em;
+	}
+
+	+ .PlayerPicker-player-row {
+		margin-top: 0.25em;
+	}
+}
+
+.PlayerPicker-add-button, .PlayerPicker-remove-button {
+	border: unset;
+	border-radius: 50%;
+	height: 1em;
+	margin-left: $pad-width / 2;
+	padding: unset;
+	width: 1em;
+}
+
+.PlayerPicker-title {
+	margin: 0;
+}

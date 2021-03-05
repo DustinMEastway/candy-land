@@ -1,0 +1,20 @@
+.Dialog-background {
+	background-color: rgba(100, 100, 100, 0.7);
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 20;
+}
+
+.Dialog-foreground {
+	background-color: #FFF;
+	border: 1px solid #000;
+	display: inline-flex;
+	flex-direction: column;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}

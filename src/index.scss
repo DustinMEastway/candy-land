@@ -1,0 +1,50 @@
+@import './variables';
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	height: 100%;
+	margin: 0;
+	position: relative;
+	width: 100%;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+@mixin normalized-element {
+	background-color: unset;
+	border: unset;
+	border-image: unset;
+	border-radius: 0;
+	color: unset;
+	margin: unset;
+	outline: unset;
+	padding: unset;
+}
+
+button {
+	@include normalized-element;
+
+	background-color: $button-background;
+	border: 1px solid #000;
+	color: $button-color;
+	cursor: pointer;
+	padding: 0.25em;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+input {
+	@include normalized-element;
+}
+
+select {
+	@include normalized-element;
+}
