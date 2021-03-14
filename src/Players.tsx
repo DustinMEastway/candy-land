@@ -5,8 +5,8 @@ import { useSubject } from './lib';
 import './Players.scss';
 
 export const Players: React.FC = () => {
-	const { gameSaveService } = useContext(AppContext);
-	const [ players ] = useSubject(gameSaveService.save, s => s.players);
+	const { save } = useContext(AppContext).gameService;
+	const [ { players } ] = useSubject(save);
 
 	return <>{
 		players.map((p, i) => <div

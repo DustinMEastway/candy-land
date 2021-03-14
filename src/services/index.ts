@@ -1,1 +1,1 @@
-export * from './GameSaveService';
+export * from './GameService';

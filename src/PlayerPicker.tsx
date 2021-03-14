@@ -7,9 +7,9 @@ import { Dialog } from './Dialog';
 import './PlayerPicker.scss';
 
 export const PlayerPicker: React.FC = () => {
-	const { gameSaveService } = useContext(AppContext);
-	const [ players, setPlayers ] = useSubject(gameSaveService.save, s => s.players);
-	const [ gameState, setGameState ] = useSubject(gameSaveService.save, s => s.state);
+	const { save } = useContext(AppContext).gameService;
+	const [ players, setPlayers ] = useSubject(save, s => s.players);
+	const [ gameState, setGameState ] = useSubject(save, s => s.state);
 	const setPlayer = (partialPlayer: Partial<Player>, playerIndex: number) => {
 		setPlayers(players.map((p, i) => (i === playerIndex) ? { ...p, ...partialPlayer } : p));
 	};

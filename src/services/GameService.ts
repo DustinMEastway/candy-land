@@ -2,7 +2,7 @@ import { maxPlayers, playerOptions } from '../data';
 import { GameSave } from '../model';
 import { Subject } from '../lib';
 
-export class GameSaveService {
+export class GameService {
 	readonly save = new Subject<GameSave>(this.createNewSave());
 
 	protected createNewSave(): GameSave {

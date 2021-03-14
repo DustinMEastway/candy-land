@@ -1,13 +1,13 @@
 import { createContext } from 'react';
-import { GameSaveService } from './services';
+import { GameService } from './services';
 
 export interface AppContextType {
-	gameSaveService: GameSaveService;
+	gameService: GameService;
 }
 
 export function createAppContext(): AppContextType {
 	return {
-		gameSaveService: new GameSaveService()
+		gameService: new GameService()
 	};
 }
 

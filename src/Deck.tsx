@@ -16,13 +16,11 @@ import './Deck.scss';
 const getNextTile = (tiles: Tile[], type: TileType) => tiles.find(tile => tile.type === type);
 
 export const Deck: React.FC = () => {
-	const { gameSaveService } = useContext(AppContext);
-	// const [ save, setSave ] = useSubject(gameSaveService.save);
-	// const { lastCard, players, turn } = save;
-	const [ lastCard, setLastCard ] = useSubject(gameSaveService.save, s => s.lastCard);
-	const [ players, setPlayers ] = useSubject(gameSaveService.save, s => s.players);
-	const [ , setState ] = useSubject(gameSaveService.save, s => s.state);
-	const [ turn, setTurn ] = useSubject(gameSaveService.save, s => s.turn);
+	const { save } = useContext(AppContext).gameService;
+	const [ lastCard, setLastCard ] = useSubject(save, s => s.lastCard);
+	const [ players, setPlayers ] = useSubject(save, s => s.players);
+	const [ , setState ] = useSubject(save, s => s.state);
+	const [ turn, setTurn ] = useSubject(save, s => s.turn);
 
 	return <div className="Deck">
 		<button className="Deck-draw-pile" onClick={() => {
@@ -58,7 +56,6 @@ export const Deck: React.FC = () => {
 				tile = bridges.get(tile);
 			}
 
-			// const newSave = { ...save };
 			setLastCard(card);
 			setPlayers(players.map((p, i) =>
 				(i === turn && tile) ? { ...p, position: tiles.indexOf(tile) } : p
@@ -68,7 +65,6 @@ export const Deck: React.FC = () => {
 			} else {
 				setTurn((turn + 1) % players.length);
 			}
-			// setSave(newSave);
 		}}>
 		</button>
 		<div className={'Deck-discard-pile' + (lastCard ? ` Deck-discard-pile--${lastCard}` : '')}></div>
