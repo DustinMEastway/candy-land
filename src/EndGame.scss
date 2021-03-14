@@ -1,0 +1,18 @@
+@import './variables';
+
+$pad-width: 1em;
+
+.EndGame {
+	background-color: $control-background;
+	padding: $pad-width $pad-width 0 $pad-width;
+}
+
+.EndGame-actions {
+	display: flex;
+	margin: ($pad-width / 2) 0;
+	justify-content: flex-end;
+}
+
+.EndGame-title {
+	margin: 0;
+}
