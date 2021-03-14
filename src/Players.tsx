@@ -1,12 +1,21 @@
 import React, { useContext } from 'react';
 import { AppContext } from './AppContext';
+import { tiles } from './data';
 import { useSubject } from './lib';
+import './Players.scss';
 
 export const Players: React.FC = () => {
 	const { gameSaveService } = useContext(AppContext);
-	const [ save ] = useSubject(gameSaveService.save);
+	const [ players ] = useSubject(gameSaveService.save, s => s.players);
 
 	return <>{
-		save.players.map((p, i) => <div key={i}>{p.name}</div>)
+		players.map((p, i) => <div
+			className={`Player ${p.className}`}
+			key={i}
+			style={{
+				left: `${tiles[p.position].x}%`,
+				top: `${tiles[p.position].y}%`
+			}}
+		></div>)
 	}</>;
 }

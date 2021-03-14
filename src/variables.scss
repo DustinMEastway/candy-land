@@ -12,3 +12,5 @@ $button-background: white;
 $button-color: black;
 $control-background: #DDDDFF;
 $control-color: black;
+// This should be '/', but webpack is being a pain about pulling stuff from the '/public' directory
+$public-url: 'http://localhost:3000/';

@@ -1,25 +1,20 @@
 import { maxPlayers, playerOptions } from '../data';
-import { Player } from '../model';
-import { BehaviorSubject } from '../lib';
-
-export interface GameSave {
-	/** Players in the game. */
-	players: Player[];
-	/** State the overall game is in. */
-	state: 'complete' | 'in-progress' | 'new';
-}
+import { GameSave } from '../model';
+import { Subject } from '../lib';
 
 export class GameSaveService {
-	readonly save = new BehaviorSubject<GameSave>(this.createNewSave());
+	readonly save = new Subject<GameSave>(this.createNewSave());
 
 	protected createNewSave(): GameSave {
 		return ({
+			lastCard: null,
 			players: playerOptions.slice(0, maxPlayers).map(({ name, value }) => ({
 				className: value,
 				name,
 				position: 0
 			})),
-			state: 'new'
+			state: 'in-progress',
+			turn: 0
 		});
 	}
 }

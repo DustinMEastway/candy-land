@@ -1,0 +1,129 @@
+@import './variables';
+
+@mixin CardPile {
+	background-color: $button-background;
+	border: 1px solid #000;
+	height: 300px;
+	width: 150px;
+}
+
+@mixin CardSquare($color) {
+	background-color: $color;
+	content: '';
+	display: block;
+	height: 100px;
+	margin: 25px;
+	width: 100px;
+}
+
+@mixin ColorCard($color) {
+	&::before {
+		@include CardSquare($color);
+	}
+}
+
+@mixin DoubleColorCard($color) {
+	&::after {
+		@include CardSquare($color);
+	}
+
+	&::before {
+		@include CardSquare($color);
+	}
+}
+
+@mixin CharacterCard($card-name) {
+	&::before {
+		@include CardSquare(#FFF);
+		background-size: 100% 100%;
+		background-image: url($public-url + $card-name + '-card.jpg');
+	}
+}
+
+.Deck {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.Deck-draw-pile {
+	@include CardPile;
+}
+
+.Deck-discard-pile {
+	@include CardPile;
+
+	margin-top: 30px;
+
+	&.Deck-discard-pile--red {
+		@include ColorCard(red);
+	}
+
+	&.Deck-discard-pile--purple {
+		@include ColorCard(purple);
+	}
+
+	&.Deck-discard-pile--yellow {
+		@include ColorCard(yellow);
+	}
+
+	&.Deck-discard-pile--blue {
+		@include ColorCard(blue);
+	}
+
+	&.Deck-discard-pile--orange {
+		@include ColorCard(orange);
+	}
+
+	&.Deck-discard-pile--green {
+		@include ColorCard(green);
+	}
+
+	&.Deck-discard-pile--2_red {
+		@include DoubleColorCard(red);
+	}
+
+	&.Deck-discard-pile--2_purple {
+		@include DoubleColorCard(purple);
+	}
+
+	&.Deck-discard-pile--2_yellow {
+		@include DoubleColorCard(yellow);
+	}
+
+	&.Deck-discard-pile--2_blue {
+		@include DoubleColorCard(blue);
+	}
+
+	&.Deck-discard-pile--2_orange {
+		@include DoubleColorCard(orange);
+	}
+
+	&.Deck-discard-pile--2_green {
+		@include DoubleColorCard(green);
+	}
+
+	&.Deck-discard-pile--candy-cane {
+		@include CharacterCard(candy-cane);
+	}
+
+	&.Deck-discard-pile--candy-heart {
+		@include CharacterCard(candy-heart);
+	}
+
+	&.Deck-discard-pile--gumdrop {
+		@include CharacterCard(gumdrop);
+	}
+
+	&.Deck-discard-pile--ice-cream {
+		@include CharacterCard(ice-cream);
+	}
+
+	&.Deck-discard-pile--peanut-brittle {
+		@include CharacterCard(peanut-brittle);
+	}
+
+	&.Deck-discard-pile--sucker {
+		@include CharacterCard(sucker);
+	}
+}

@@ -8,14 +8,13 @@ import './PlayerPicker.scss';
 
 export const PlayerPicker: React.FC = () => {
 	const { gameSaveService } = useContext(AppContext);
-	const [ save, setSave ] = useSubject(gameSaveService.save);
-	const { players, state } = save;
-	const setPlayers = (players: Player[]) => { setSave({ ...save, players }); };
+	const [ players, setPlayers ] = useSubject(gameSaveService.save, s => s.players);
+	const [ gameState, setGameState ] = useSubject(gameSaveService.save, s => s.state);
 	const setPlayer = (partialPlayer: Partial<Player>, playerIndex: number) => {
 		setPlayers(players.map((p, i) => (i === playerIndex) ? { ...p, ...partialPlayer } : p));
 	};
 
-	return (state !== 'new') ? null : <Dialog content={
+	return (gameState !== 'new') ? null : <Dialog content={
 		<div className="PlayerPicker">
 			<h2 className="PlayerPicker-title">Select Players</h2>
 			<div className="PlayerPicker-content">
@@ -57,7 +56,7 @@ export const PlayerPicker: React.FC = () => {
 				}
 			</div>
 			<div className="PlayerPicker-actions">
-				<button onClick={() => setSave({ ...save, state: 'in-progress' })} type="button">Start</button>
+				<button onClick={() => setGameState('in-progress')} type="button">Start</button>
 			</div>
 		</div>
 	} />;

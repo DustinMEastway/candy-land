@@ -1,0 +1,25 @@
+$playerSize: 2em;
+
+.Player {
+	border-radius: 50%;
+	height: $playerSize;
+	position: absolute;
+	width: $playerSize;
+	transform: translate(-50%, -50%);
+}
+
+.Player-blue {
+	background-color: blue;
+}
+
+.Player-green {
+	background-color: green;
+}
+
+.Player-red {
+	background-color: red;
+}
+
+.Player-yellow {
+	background-color: yellow;
+}
