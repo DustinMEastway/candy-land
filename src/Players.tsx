@@ -6,10 +6,13 @@ import './Players.scss';
 
 export const Players: React.FC = () => {
 	const { save } = useContext(AppContext).gameService;
-	const [ { players } ] = useSubject(save);
+	const [ { players, turn } ] = useSubject(save);
+
+	// render current player last
+	const orderedPlayers = players.slice(turn + 1).concat(players.slice(0, turn + 1));
 
 	return <>{
-		players.map((p, i) => <div
+		orderedPlayers.map((p, i) => <div
 			className={`Player ${p.className}`}
 			key={i}
 			style={{
