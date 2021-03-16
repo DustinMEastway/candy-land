@@ -4,6 +4,7 @@ import {
 	characterCards,
 	colorCards,
 	colorCardsCount,
+	dotTiles,
 	doubleColorCardsCount,
 	tiles,
 	totalCardsCount
@@ -39,18 +40,25 @@ export const Deck: React.FC = () => {
 			const isDouble = card.startsWith('2_');
 			const color = card.replace(/^2_/, '') as TileType;
 
+			const currentPlayerTile = tiles[player.position];
 			let tilesToSearch: Tile[];
 			if ((characterCards as CardType[]).includes(card)) {
 				tilesToSearch = tiles;
 			} else {
-				const currentTile = tiles[player.position];
-				tilesToSearch = tiles.slice(tiles.indexOf(currentTile) + 1);
+				tilesToSearch = tiles.slice(tiles.indexOf(currentPlayerTile) + 1);
 			}
 
-			let tile = getNextTile(tilesToSearch, color);
-			if (tile && isDouble) {
-				tile = getNextTile(tiles.slice(tiles.indexOf(tile) + 1), color);
+			let tile: Tile | undefined;
+			if (dotTiles.has(currentPlayerTile) && currentPlayerTile.type !== color) {
+				// keep player where they are if they do not draw the correct color for a dot tile
+				tile = currentPlayerTile;
+			} else {
+				tile = getNextTile(tilesToSearch, color);
+				if (tile && isDouble) {
+					tile = getNextTile(tiles.slice(tiles.indexOf(tile) + 1), color);
+				}
 			}
+
 
 			if (tile && bridges.has(tile)) {
 				tile = bridges.get(tile);
