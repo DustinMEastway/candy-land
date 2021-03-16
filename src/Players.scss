@@ -6,6 +6,8 @@ $playerSize: 2em;
 	position: absolute;
 	width: $playerSize;
 	transform: translate(-50%, -50%);
+	transition-property: left, top;
+	transition-duration: 1s;
 }
 
 .Player-blue {

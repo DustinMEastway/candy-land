@@ -12,9 +12,9 @@ export const Players: React.FC = () => {
 	const orderedPlayers = players.slice(turn + 1).concat(players.slice(0, turn + 1));
 
 	return <>{
-		orderedPlayers.map((p, i) => <div
+		orderedPlayers.map(p => <div
 			className={`Player ${p.className}`}
-			key={i}
+			key={p.id}
 			style={{
 				left: `${tiles[p.position].x}%`,
 				top: `${tiles[p.position].y}%`

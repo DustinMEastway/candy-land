@@ -49,7 +49,7 @@ export const PlayerPicker: React.FC = () => {
 								playerOptions.find(o => players.every(p => p.className !== o.value))
 								|| playerOptions[0]
 							);
-							setPlayers(players.concat({ className: value, name, position: 0 }));
+							setPlayers(players.concat({ className: value, id: value, name, position: 0 }));
 						}}
 						type="button"
 					>+</button>

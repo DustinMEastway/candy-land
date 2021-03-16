@@ -35,6 +35,7 @@ export class GameService {
 			lastCard: null,
 			players: playerOptions.slice(0, maxPlayers).map(({ name, value }) => ({
 				className: value,
+				id: value,
 				name,
 				position: 0
 			})),
