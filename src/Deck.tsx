@@ -1,14 +1,5 @@
 import React, { useContext } from 'react';
-import {
-	bridges,
-	characterCards,
-	colorCards,
-	colorCardsCount,
-	dotTiles,
-	doubleColorCardsCount,
-	tiles,
-	totalCardsCount
-} from './data';
+import { bridges, characterCards, dotTiles, tiles } from './data';
 import { useSubject } from './lib';
 import { AppContext } from './AppContext';
 import { CardType, Tile, TileType } from './model';
@@ -26,9 +17,8 @@ export const Deck: React.FC = () => {
 
 	return <div className="Deck">
 		<button className="Deck-draw-pile" onClick={() => {
-			const cardNumber = Math.floor(Math.random() * totalCardsCount);
-			const card = gameService.drawCard();
 			const player = players[turn];
+			const card = gameService.drawCard();
 			const isDouble = card.startsWith('2_');
 			const color = card.replace(/^2_/, '') as TileType;
 
@@ -50,7 +40,6 @@ export const Deck: React.FC = () => {
 					tile = getNextTile(tiles.slice(tiles.indexOf(tile) + 1), color);
 				}
 			}
-
 
 			if (tile && bridges.has(tile)) {
 				tile = bridges.get(tile);
