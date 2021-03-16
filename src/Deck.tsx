@@ -17,7 +17,8 @@ import './Deck.scss';
 const getNextTile = (tiles: Tile[], type: TileType) => tiles.find(tile => tile.type === type);
 
 export const Deck: React.FC = () => {
-	const { save } = useContext(AppContext).gameService;
+	const { gameService } = useContext(AppContext);
+	const { save } = gameService;
 	const [ lastCard, setLastCard ] = useSubject(save, s => s.lastCard);
 	const [ players, setPlayers ] = useSubject(save, s => s.players);
 	const [ , setState ] = useSubject(save, s => s.state);
@@ -26,16 +27,7 @@ export const Deck: React.FC = () => {
 	return <div className="Deck">
 		<button className="Deck-draw-pile" onClick={() => {
 			const cardNumber = Math.floor(Math.random() * totalCardsCount);
-			let card: CardType;
-
-			if (cardNumber < colorCardsCount) {
-				card = colorCards[cardNumber % colorCards.length];
-			} else if (cardNumber < colorCardsCount + doubleColorCardsCount) {
-				card = '2_' + colorCards[cardNumber % colorCards.length] as CardType;
-			} else {
-				card = characterCards[cardNumber % characterCards.length];
-			}
-
+			const card = gameService.drawCard();
 			const player = players[turn];
 			const isDouble = card.startsWith('2_');
 			const color = card.replace(/^2_/, '') as TileType;
