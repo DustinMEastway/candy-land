@@ -7,36 +7,28 @@
 	width: 300px;
 }
 
-@mixin CardSquare($color) {
-	background-color: $color;
-	content: '';
-	display: inline-block;
-	height: 100px;
-	margin: 25px;
-	width: 100px;
+@mixin FullBackgroundJpg($fileName) {
+	background-image: url($public-url + $fileName + '.jpg');
+	background-size: 100% 100%;
 }
 
 @mixin ColorCard($color) {
-	&::before {
-		@include CardSquare($color);
-	}
+	@include FullBackgroundJpg('card-' + $color);
 }
 
 @mixin DoubleColorCard($color) {
-	&::after {
-		@include CardSquare($color);
-	}
-
-	&::before {
-		@include CardSquare($color);
-	}
+	@include FullBackgroundJpg('card-' + $color + '-2');
 }
 
 @mixin CharacterCard($card-name) {
+	display: flex;
+
 	&::before {
-		@include CardSquare(#FFF);
-		background-size: 100% 100%;
-		background-image: url($public-url + $card-name + '-card.jpg');
+		@include FullBackgroundJpg('card-' + $card-name);
+		content: '';
+		display: inline-block;
+		flex: 1;
+		margin: 28px 8px;
 	}
 }
 
@@ -48,6 +40,7 @@
 
 .Deck-draw-pile {
 	@include CardPile;
+	@include FullBackgroundJpg('card-back');
 }
 
 .Deck-discard-pile {
