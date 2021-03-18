@@ -4,10 +4,12 @@ $AppSpacing: 2%;
 
 .App {
 	background-color: $control-background;
+	box-sizing: border-box;
 	color: $control-color;
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	padding: $AppSpacing;
 	width: 100vw;
 
 	.TurnDisplay {
@@ -23,18 +25,7 @@ $AppSpacing: 2%;
 	position: relative;
 }
 
-.App-Content {
+.App-TopContent {
 	display: flex;
-	flex: 1;
-	padding: 0 $AppSpacing $AppSpacing $AppSpacing;
-}
-
-.App-Header {
-	text-align: center;
-}
-
-.App-SideContent {
-	display: flex;
-	flex-direction: column;
-	margin-left: $AppSpacing;
+	margin-bottom: $AppSpacing / 2;
 }

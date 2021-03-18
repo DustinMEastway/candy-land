@@ -39,7 +39,7 @@ export class GameService {
 				name,
 				position: 0
 			})),
-			state: 'in-progress',
+			state: 'new',
 			turn: 0
 		});
 	}
