@@ -2,4 +2,4 @@ export type CharacterTile = 'candy-cane' | 'candy-heart' | 'gumdrop' | 'ice-crea
 
 export type ColorTile = 'blue' | 'green' | 'orange' | 'purple' | 'red' | 'yellow';
 
-export type TileType = ColorTile | CharacterTile;
+export type TileType = ColorTile | CharacterTile | 'rainbow';

@@ -43,6 +43,9 @@ export const Deck: React.FC = () => {
 
 			if (tile && bridges.has(tile)) {
 				tile = bridges.get(tile);
+			} else if (!tile) {
+				// if no tile is found, then the player is at the end which is a rainbow tile
+				tile = tiles[tiles.length - 1];
 			}
 
 			setLastCard(card);

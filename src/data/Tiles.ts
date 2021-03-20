@@ -130,5 +130,5 @@ export const tiles: Tile[] = [
 	{ type: 'red', x: 27.7, y: 14.5 },
 	{ type: 'purple', x: 30.7, y: 17 },
 	{ type: 'yellow', x: 33.8, y: 19.8 },
-	{ type: 'blue', x: 36.9, y: 22.2 }
+	{ type: 'rainbow', x: 36.9, y: 22.2 }
 ];
