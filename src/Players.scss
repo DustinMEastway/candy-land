@@ -1,27 +1,31 @@
-$playerSize: 2em;
+@import './variables';
+
+$player-size-multiplyer: 6;
 
 .Player {
+	background-size: 100% 100%;
 	border-radius: 50%;
-	height: $playerSize;
+	height: 20px * $player-size-multiplyer;
 	position: absolute;
-	width: $playerSize;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -85%);
 	transition-property: left, top;
 	transition-duration: 1s;
+	width: 13px * $player-size-multiplyer;
 }
 
 .Player-blue {
-	background-color: blue;
+	background-image: url($public-url + 'player-blue.png');
 }
 
-.Player-green {
-	background-color: green;
+.Player-brown {
+	background-image: url($public-url + 'player-brown.png');
 }
+
 
 .Player-red {
-	background-color: red;
+	background-image: url($public-url + 'player-red.png');
 }
 
-.Player-yellow {
-	background-color: yellow;
+.Player-purple {
+	background-image: url($public-url + 'player-purple.png');
 }
