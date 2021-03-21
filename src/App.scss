@@ -1,6 +1,6 @@
 @import 'src/variables.scss';
 
-$AppSpacing: 2%;
+$AppSpacing: 1em;
 
 .App {
 	background-color: $control-background;
@@ -17,8 +17,16 @@ $AppSpacing: 2%;
 	}
 }
 
-.App-Board {
+.App-BoardArea {
+	align-items: center;
+	display: flex;
 	flex: 1;
+	justify-content: center;
+	min-height: 0;
+	min-width: 0;
+}
+
+.App-Board {
 	background-color: white;
 	background-image: url($public-url + 'board.jpg');
 	background-size: 100% 100%;
@@ -28,4 +36,22 @@ $AppSpacing: 2%;
 .App-TopContent {
 	display: flex;
 	margin-bottom: $AppSpacing / 2;
+}
+$image-height: 3200;
+$image-width: 4000;
+
+// adjust board height based on width in portrait mode
+@media screen and (orientation: portrait) {
+	.App-Board {
+		height: calc((100vw - #{2 * $AppSpacing}) * #{$image-height / $image-width});
+		width: 100%;
+	}
+}
+
+// adjust board width based on height in landscape mode
+@media screen and (orientation: landscape) {
+	.App-Board {
+		height: 100%;
+		width: calc((100vh - #{2.5 * $AppSpacing} - #{$card-height}) * #{$image-width / $image-height});
+	}
 }

@@ -14,8 +14,10 @@ export const App: React.FC = () => (
 			<TurnDisplay />
 			<Deck />
 		</div>
-		<div className="App-Board">
-			<Players />
+		<div className="App-BoardArea">
+			<div className="App-Board">
+				<Players />
+			</div>
 		</div>
 	</div>
 );

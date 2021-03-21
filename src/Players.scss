@@ -1,16 +1,18 @@
 @import './variables';
 
-$player-size-multiplyer: 6;
-
 .Player {
 	background-size: 100% 100%;
 	border-radius: 50%;
-	height: 20px * $player-size-multiplyer;
+	height: 12.22%;
 	position: absolute;
 	transform: translate(-50%, -85%);
 	transition-property: left, top;
 	transition-duration: 1s;
-	width: 13px * $player-size-multiplyer;
+	width: 5.35%;
+
+	&.Flip {
+		transform: scaleX(-1) translate(50%, -85%);
+	}
 }
 
 .Player-blue {
@@ -20,7 +22,6 @@ $player-size-multiplyer: 6;
 .Player-brown {
 	background-image: url($public-url + 'player-brown.png');
 }
-
 
 .Player-red {
 	background-image: url($public-url + 'player-red.png');

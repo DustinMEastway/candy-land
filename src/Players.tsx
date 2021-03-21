@@ -12,13 +12,22 @@ export const Players: React.FC = () => {
 	const orderedPlayers = players.slice(turn + 1).concat(players.slice(0, turn + 1));
 
 	return <>{
-		orderedPlayers.map(p => <div
-			className={`Player ${p.className}`}
-			key={p.id}
-			style={{
-				left: `${tiles[p.position].x}%`,
-				top: `${tiles[p.position].y}%`
-			}}
-		></div>)
+		orderedPlayers.map(p => {
+			const { x, y } = tiles[p.position];
+			const nextTile = tiles[p.position + 1];
+			let className = `Player ${p.className}`;
+			if (nextTile?.x < x) {
+				className += ' Flip';
+			}
+
+			return <div
+				className={className}
+				key={p.id}
+				style={{
+					left: `${x}%`,
+					top: `${y}%`
+				}}
+			></div>;
+		})
 	}</>;
 }

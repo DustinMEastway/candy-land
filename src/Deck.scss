@@ -3,8 +3,8 @@
 @mixin CardPile {
 	background-color: $button-background;
 	border: 1px solid #000;
-	height: 150px;
-	width: 300px;
+	height: $card-height;
+	width: $card-width;
 }
 
 @mixin FullBackgroundJpg($fileName) {
