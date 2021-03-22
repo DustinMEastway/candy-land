@@ -35,8 +35,9 @@ $AppSpacing: 1em;
 
 .App-TopContent {
 	display: flex;
-	margin-bottom: $AppSpacing / 2;
+	flex-wrap: wrap;
 }
+
 $image-height: 3200;
 $image-width: 4000;
 

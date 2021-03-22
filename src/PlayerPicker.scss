@@ -4,6 +4,7 @@ $pad-width: 1em;
 
 .PlayerPicker {
 	background-color: $control-background;
+	max-width: 100vw;
 	padding: $pad-width $pad-width 0 $pad-width;
 }
 
@@ -18,6 +19,8 @@ $pad-width: 1em;
 }
 
 .PlayerPicker-player-row {
+	display: flex;
+
 	input {
 		background-color: $input-background;
 		color: $input-color;

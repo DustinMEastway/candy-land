@@ -104,7 +104,7 @@ export function useSubject<T, R>(
 	return [ propState, setter ];
 }
 
-const getterPropertyRegex = /^\s*\(?(\w+)\)?\s*=>\s*\1((?:\??\.\w+)*);\s*$|^\s*function\s*\((\w+)\)\s*{\s*return\s+\3((?:\??\.\w+)*);?\s*}\s*$/;
+const getterPropertyRegex = /^\s*\(?(\w+)\)?\s*=>\s*\1((?:\??\.\w+)*);?\s*$|^\s*function\s*\((\w+)\)\s*{\s*return\s+\3((?:\??\.\w+)*);?\s*}\s*$/;
 
 function createEmptyClone<T>(source: T): T {
 	if (Array.isArray(source)) {

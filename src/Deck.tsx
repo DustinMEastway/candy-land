@@ -16,7 +16,7 @@ export const Deck: React.FC = () => {
 	const [ turn, setTurn ] = useSubject(save, s => s.turn);
 
 	return <div className="Deck">
-		<button className="Deck-draw-pile" onClick={() => {
+		<button className="Deck-pile Deck-draw-pile" onClick={() => {
 			const player = players[turn];
 			const card = gameService.drawCard();
 			const isDouble = card.startsWith('2_');
@@ -59,6 +59,6 @@ export const Deck: React.FC = () => {
 			}
 		}}>
 		</button>
-		<div className={'Deck-discard-pile' + (lastCard ? ` Deck-discard-pile--${lastCard}` : '')}></div>
+		<div className={'Deck-pile Deck-discard-pile' + (lastCard ? ` Deck-discard-pile--${lastCard}` : '')}></div>
 	</div>;
 };

@@ -35,7 +35,12 @@
 .Deck {
 	display: flex;
 	flex: 1;
+	flex-wrap: wrap;
 	justify-content: center;
+}
+
+.Deck-pile {
+	margin: 0 0 0.5em 0.5em;
 }
 
 .Deck-draw-pile {
@@ -45,8 +50,6 @@
 
 .Deck-discard-pile {
 	@include CardPile;
-
-	margin-left: 30px;
 
 	&.Deck-discard-pile--red {
 		@include ColorCard('red');
