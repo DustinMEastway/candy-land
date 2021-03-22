@@ -36,7 +36,7 @@ export class GameService {
 			players: playerOptions.slice(0, maxPlayers).map(({ name, value }) => ({
 				className: value,
 				id: value,
-				name,
+				name: name.substring(0, 1).toUpperCase() + name.substring(1),
 				position: 0
 			})),
 			state: 'new',
