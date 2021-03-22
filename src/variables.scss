@@ -5,8 +5,6 @@ $button-background: white;
 $button-color: black;
 $control-background: #FEFFB6;
 $control-color: black;
-// This should be '/', but webpack is being a pain about pulling stuff from the '/public' directory
-$public-url: 'http://localhost:3000/';
 
 $card-height: 150px;
 $card-width: 200px;
