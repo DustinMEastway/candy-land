@@ -67,7 +67,7 @@ export function useSubject<T, R>(
 		const getterString = getter.toString();
 		const propertyMatch = getterPropertyRegex.exec(getterString);
 		if (propertyMatch != null) {
-			const properties = propertyMatch[2].split(/\??\./).filter(p => p.trim() !== '');
+			const properties = (propertyMatch[2] || propertyMatch[4]).split(/\??\./).filter(p => p.trim() !== '');
 			const nextState = (
 				(properties.length)
 				? createShallowClone(subject.value) as T
@@ -103,25 +103,8 @@ export function useSubject<T, R>(
 
 	return [ propState, setter ];
 }
-/*
-export function useSubject<T, R>(subject: Subject<T>, getter?: (item: T) => R): [ R | null, (nextValue: R) => void ] {
-	const startState = (subject instanceof BehaviorSubject)
-		? subject.value as T
-		: null;
 
-	const [ state, setState ] = useState(startState);
-	useEffect(() => {
-		const observer = (nextValue: T) => setState(nextValue);
-		subject.subscribe(observer);
-		return () => subject.unsubscribe(observer);
-	}, [ subject ]);
-
-	return [ state, subject.next ];
-}
-*/
-
-// TODO: add function getter support
-const getterPropertyRegex = /^\s*\(?(\w+)\)?\s*=>\s*\1((?:\??\.\w+)*)$/;
+const getterPropertyRegex = /^\s*\(?(\w+)\)?\s*=>\s*\1((?:\??\.\w+)*);\s*$|^\s*function\s*\((\w+)\)\s*{\s*return\s+\3((?:\??\.\w+)*);?\s*}\s*$/;
 
 function createEmptyClone<T>(source: T): T {
 	if (Array.isArray(source)) {
@@ -148,65 +131,3 @@ function createShallowClone<T>(source: T): T {
 
 	return clone;
 }
-
-/**
- * React hook used to manage the value a @see Subject.
- * @returns Tuple containing the current/last value and a value setter.
- *
-export function useSubjectProp<T, R>(subject: Subject<T>, getter: (item: T | null) => R): [ R, (nextValue: R) => void ];
-export function useSubjectProp<T, R>(subject: BehaviorSubject<T>, getter: (item: T) => R): [ R, (nextValue: R) => void ];
-export function useSubjectProp<T, R>(subject: Subject<T>, getter: (item: T | null) => R): [ R, (nextValue: R) => void ] {
-	const startState = (subject instanceof BehaviorSubject)
-		? subject.value as T
-		: null;
-
-	const [ state, setState ] = useState(startState);
-
-	// TODO: useReducer instead of useState followed by useEffect?
-	const [ propState, setPropState ] = useState(getter(startState));
-	useEffect(() => {
-		setPropState(getter(state));
-	}, [ getter, state, setPropState ]);
-
-	useEffect(() => {
-		const observer = (nextValue: T) => setState(nextValue);
-		subject.subscribe(observer);
-		return () => subject.unsubscribe(observer);
-	}, [ subject ]);
-
-	const setter = (nextPropertyValue: R) => {
-		const getterString = getter.toString();
-		const propertyMatch = getterPropertyRegex.exec(getterString);
-		if (propertyMatch != null) {
-			const properties = propertyMatch[2].split(/\??\./);
-			const nextState = createShallowClone(state) as T;
-
-			// TODO: move logic into a new `cloneSet(object, value, properties)` function
-			let currentStateProp = state;
-			let currentCloneStateProp = nextState;
-			properties.forEach((property, index) => {
-				if (currentStateProp == null || currentCloneStateProp == null) {
-					throw new Error(
-						`null reference exception while trying to access x${propertyMatch[2]} on object:\n`
-						+ JSON.stringify(state)
-					);
-				}
-
-				(currentCloneStateProp as any)[property] = (
-					(index === properties.length - 1)
-					? nextPropertyValue
-					: createShallowClone((currentStateProp as any)[property])
-				);
-			});
-			subject.next(nextState);
-		} else {
-			throw new Error(
-				'`getter` argument of `useSubject` must be a simple property getter (e.g. `x => x.user.name`)'
-				+ ' in order for setter to work.'
-			);
-		}
-	};
-
-	return [ propState, setter ];
-}
-*/
