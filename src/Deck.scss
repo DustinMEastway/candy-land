@@ -27,8 +27,9 @@
 		@include FullBackgroundJpg('card-' + $card-name);
 		content: '';
 		display: inline-block;
-		flex: 1;
-		margin: 28px 8px;
+		height: 50px;
+		margin: auto;
+		width: 100px;
 	}
 }
 
