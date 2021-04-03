@@ -10,7 +10,7 @@ import {
 	tiles
 } from '../data';
 import { CardType, GameSave, Tile, TileType } from '../model';
-import { range, shuffle, Subject } from '../lib';
+import { range, shuffle, wait, Subject } from '../lib';
 
 export class GameService {
 	/** Save containing the current game state. */
@@ -58,9 +58,6 @@ export class GameService {
 		}
 
 		currentSave.lastCard = card;
-		currentSave.players = players.map((p, i) =>
-			(i === turn && tile) ? { ...p, position: tiles.indexOf(tile) } : p
-		);
 		if (tile === tiles[tiles.length - 1]) {
 			currentSave.state = 'complete';
 		} else {
@@ -68,6 +65,28 @@ export class GameService {
 		}
 
 		this.save.next(currentSave);
+		this.animateToTile(turn, tile!);
+	}
+
+	protected async animateToTile(playerIndex: number, tile: Tile): Promise<void> {
+		const position = this.save.value.players[playerIndex].position;
+		const newPosition = tiles.indexOf(tile);
+		const path = range(newPosition, position);
+		while (path.length) {
+			const save = { ...this.save.value };
+			save.players = save.players.slice();
+			save.players[playerIndex] = { ...save.players[playerIndex] };
+			const player = save.players[playerIndex];
+			player.position = path.pop()!;
+
+			const lastMove = !path.length;
+			player.backwards = !lastMove && newPosition < position;
+			if (!lastMove) {
+				await wait(300);
+			}
+
+			this.save.next(save);
+		}
 	}
 
 	/** Create a new shuffled deck. */
@@ -89,12 +108,13 @@ export class GameService {
 			deck: this.createDeck(),
 			lastCard: null,
 			players: playerOptions.slice(0, maxPlayers).map(({ name, value }) => ({
+				backwards: false,
 				className: value,
 				id: value,
 				name: name.substring(0, 1).toUpperCase() + name.substring(1),
 				position: 0
 			})),
-			state: 'in-progress',
+			state: 'new',
 			turn: 0
 		});
 	}

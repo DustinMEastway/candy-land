@@ -16,7 +16,8 @@ export const Players: React.FC = () => {
 			const { x, y } = tiles[p.position];
 			const nextTile = tiles[p.position + 1];
 			let className = `Player ${p.className}`;
-			if (nextTile?.x < x) {
+
+			if (p.backwards !== (nextTile?.x < x)) {
 				className += ' Flip';
 			}
 
