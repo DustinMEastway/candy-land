@@ -9,7 +9,7 @@ import {
 	playerOptions,
 	tiles
 } from '../data';
-import { CardType, GameSave, Tile, TileType } from '../model';
+import { CardType, GameSave, Player, PlayerOption, Tile, TileType } from '../model';
 import { range, shuffle, wait, Subject } from '../lib';
 
 export class GameService {
@@ -68,6 +68,17 @@ export class GameService {
 		this.animateToTile(turn, tile!);
 	}
 
+	/** Creates a new player from a player option. */
+	public static createPlayer({ name, value }: PlayerOption): Player {
+		return {
+			backwards: false,
+			className: value,
+			id: value,
+			name: name.substring(0, 1).toUpperCase() + name.substring(1),
+			position: 0
+		};
+	}
+
 	protected async animateToTile(playerIndex: number, tile: Tile): Promise<void> {
 		const position = this.save.value.players[playerIndex].position;
 		const newPosition = tiles.indexOf(tile);
@@ -107,13 +118,7 @@ export class GameService {
 		return ({
 			deck: this.createDeck(),
 			lastCard: null,
-			players: playerOptions.slice(0, maxPlayers).map(({ name, value }) => ({
-				backwards: false,
-				className: value,
-				id: value,
-				name: name.substring(0, 1).toUpperCase() + name.substring(1),
-				position: 0
-			})),
+			players: playerOptions.slice(0, maxPlayers).map(this.createPlayer),
 			state: 'new',
 			turn: 0
 		});

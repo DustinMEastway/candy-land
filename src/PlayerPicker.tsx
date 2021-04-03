@@ -4,6 +4,7 @@ import { useSubject } from './lib';
 import { Player } from './model';
 import { AppContext } from './AppContext';
 import { Dialog } from './Dialog';
+import { GameService } from './services';
 import './PlayerPicker.scss';
 
 export const PlayerPicker: React.FC = () => {
@@ -45,17 +46,11 @@ export const PlayerPicker: React.FC = () => {
 					(players.length >= maxPlayers) ? null : <button
 						className="PlayerPicker-add-button"
 						onClick={() => {
-							const { name, value } = (
+							const playerOption = (
 								playerOptions.find(o => players.every(p => p.className !== o.value))
 								|| playerOptions[0]
 							);
-							setPlayers(players.concat({
-								backwards: false,
-								className: value,
-								id: value,
-								name,
-								position: 0
-							}));
+							setPlayers(players.concat(GameService.createPlayer(playerOption)));
 						}}
 						type="button"
 					>+</button>
