@@ -25,7 +25,7 @@ export function range(start: number, stop?: number, step?: number): number[] {
 		step = (stop > start) ? 1 : -1;
 	}
 
-	if (step === 0 || (step > 0 && stop < start) || (step < 0 && stop < start)) {
+	if (step === 0 || (step > 0 && stop < start) || (step < 0 && stop > start)) {
 		return [];
 	}
 
