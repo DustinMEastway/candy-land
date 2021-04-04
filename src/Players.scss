@@ -6,6 +6,7 @@
 	position: absolute;
 	transform: translate(-50%, -85%);
 	transition-property: left, top;
+	transition-timing-function: linear;
 	transition-duration: 300ms;
 	width: 5.35%;
 
