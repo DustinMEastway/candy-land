@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.abccaecc.chunk.css",
-    "main.js": "/static/js/main.f2325105.chunk.js",
-    "main.js.map": "/static/js/main.f2325105.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.3a97fa99.js",
-    "runtime-main.js.map": "/static/js/runtime-main.3a97fa99.js.map",
-    "static/js/2.f84a84b8.chunk.js": "/static/js/2.f84a84b8.chunk.js",
-    "static/js/2.f84a84b8.chunk.js.map": "/static/js/2.f84a84b8.chunk.js.map",
-    "static/js/3.8a94e491.chunk.js": "/static/js/3.8a94e491.chunk.js",
-    "static/js/3.8a94e491.chunk.js.map": "/static/js/3.8a94e491.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.abccaecc.chunk.css.map": "/static/css/main.abccaecc.chunk.css.map",
-    "static/js/2.f84a84b8.chunk.js.LICENSE.txt": "/static/js/2.f84a84b8.chunk.js.LICENSE.txt",
-    "static/media/App.scss": "/static/media/board.247033ba.jpg",
-    "static/media/Deck.scss": "/static/media/card-yellow.3008abfd.jpg",
-    "static/media/Players.scss": "/static/media/player-purple.13cada7c.png"
+    "main.css": "/candy-land/static/css/main.70fdb30e.chunk.css",
+    "main.js": "/candy-land/static/js/main.f2325105.chunk.js",
+    "main.js.map": "/candy-land/static/js/main.f2325105.chunk.js.map",
+    "runtime-main.js": "/candy-land/static/js/runtime-main.f9fd5dd4.js",
+    "runtime-main.js.map": "/candy-land/static/js/runtime-main.f9fd5dd4.js.map",
+    "static/js/2.f84a84b8.chunk.js": "/candy-land/static/js/2.f84a84b8.chunk.js",
+    "static/js/2.f84a84b8.chunk.js.map": "/candy-land/static/js/2.f84a84b8.chunk.js.map",
+    "static/js/3.8a94e491.chunk.js": "/candy-land/static/js/3.8a94e491.chunk.js",
+    "static/js/3.8a94e491.chunk.js.map": "/candy-land/static/js/3.8a94e491.chunk.js.map",
+    "index.html": "/candy-land/index.html",
+    "static/css/main.70fdb30e.chunk.css.map": "/candy-land/static/css/main.70fdb30e.chunk.css.map",
+    "static/js/2.f84a84b8.chunk.js.LICENSE.txt": "/candy-land/static/js/2.f84a84b8.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/candy-land/static/media/board.247033ba.jpg",
+    "static/media/Deck.scss": "/candy-land/static/media/card-yellow.3008abfd.jpg",
+    "static/media/Players.scss": "/candy-land/static/media/player-purple.13cada7c.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.3a97fa99.js",
+    "static/js/runtime-main.f9fd5dd4.js",
     "static/js/2.f84a84b8.chunk.js",
-    "static/css/main.abccaecc.chunk.css",
+    "static/css/main.70fdb30e.chunk.css",
     "static/js/main.f2325105.chunk.js"
   ]
 }
