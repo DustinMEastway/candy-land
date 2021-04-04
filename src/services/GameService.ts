@@ -59,7 +59,7 @@ export class GameService {
 		} else if (!tile) {
 			// if no tile is found, then the player is at the end which is a rainbow tile
 			tile = tiles[tiles.length - 1];
-			path = range(tiles.length, player.position);
+			path = range(tiles.length - 1, player.position);
 		}
 
 		currentSave.lastCard = card;
