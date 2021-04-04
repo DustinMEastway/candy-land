@@ -50,11 +50,16 @@ export class GameService {
 			}
 		}
 
+		const newPosition = tiles.indexOf(tile!);
+		let path = range(newPosition, player.position);
+
 		if (tile && bridges.has(tile)) {
 			tile = bridges.get(tile);
+			path = [ tiles.indexOf(tile!), ...path];
 		} else if (!tile) {
 			// if no tile is found, then the player is at the end which is a rainbow tile
 			tile = tiles[tiles.length - 1];
+			path = range(tiles.length, player.position);
 		}
 
 		currentSave.lastCard = card;
@@ -65,7 +70,7 @@ export class GameService {
 		}
 
 		this.save.next(currentSave);
-		this.animateToTile(turn, tile!);
+		this.animateToTile(turn, path, newPosition < player.position);
 	}
 
 	/** Creates a new player from a player option. */
@@ -79,10 +84,7 @@ export class GameService {
 		};
 	}
 
-	protected async animateToTile(playerIndex: number, tile: Tile): Promise<void> {
-		const position = this.save.value.players[playerIndex].position;
-		const newPosition = tiles.indexOf(tile);
-		const path = range(newPosition, position);
+	protected async animateToTile(playerIndex: number, path: number[], backwards: boolean): Promise<void> {
 		while (path.length) {
 			const save = { ...this.save.value };
 			save.players = save.players.slice();
@@ -91,12 +93,12 @@ export class GameService {
 			player.position = path.pop()!;
 
 			const lastMove = !path.length;
-			player.backwards = !lastMove && newPosition < position;
+			player.backwards = !lastMove && backwards;
+			this.save.next(save);
+
 			if (!lastMove) {
 				await wait(300);
 			}
-
-			this.save.next(save);
 		}
 	}
 
